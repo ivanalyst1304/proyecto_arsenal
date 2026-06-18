@@ -15,6 +15,17 @@ RAW = BASE / "data" / "raw"
 OUT = BASE / "data" / "processed"
 OUT.mkdir(parents=True, exist_ok=True)
 
+
+def enteros(df):
+    """Convierte a entero las columnas numéricas cuyos valores son todos enteros."""
+    for c in df.columns:
+        if pd.api.types.is_numeric_dtype(df[c]):
+            s = df[c].dropna()
+            if len(s) > 0 and (s == s.round()).all():
+                df[c] = df[c].astype("Int64")
+    return df
+
+
 CSV_PLANTILLA = BASE / "data" / "seasonstats_arsenal.csv"   # CSV original de la temporada
 POST = RAW / "postpartido_J26_Brentford_Arsenal.json"
 
@@ -67,7 +78,7 @@ perfiles = {
 }
 pl["perfil"] = pl["jugador"].map(perfiles).fillna("Rotación de la plantilla.")
 
-pl.to_csv(OUT / "plantilla_arsenal.csv", index=False, encoding="utf-8-sig")
+enteros(pl).to_csv(OUT / "plantilla_arsenal.csv", index=False, sep=";", decimal=",", encoding="utf-8-sig")
 
 # =====================================================================
 # 2) MODELO DE JUEGO — indicadores de estilo (a partir del CSV de equipo)
@@ -85,7 +96,7 @@ estilo = [
     ("Regates exitosos", int(tot("Successful Dribbles")), "Juego individual para romper líneas."),
 ]
 modelo = pd.DataFrame(estilo, columns=["indicador", "valor", "descripcion"])
-modelo.to_csv(OUT / "modelo_juego_arsenal.csv", index=False, encoding="utf-8-sig")
+enteros(modelo).to_csv(OUT / "modelo_juego_arsenal.csv", index=False, sep=";", decimal=",", encoding="utf-8-sig")
 
 # =====================================================================
 # 3) ONCE INICIAL — formación 4-2-3-1 con coordenadas para Power BI
@@ -114,7 +125,7 @@ for nombre, dorsal in titulares:
     x, y, rol = coords.get(dorsal, (50, 50, "?"))
     filas.append({"dorsal": int(dorsal), "jugador": nombre, "rol": rol, "x": x, "y": y})
 once = pd.DataFrame(filas).sort_values("y")
-once.to_csv(OUT / "once_inicial_arsenal.csv", index=False, encoding="utf-8-sig")
+enteros(once).to_csv(OUT / "once_inicial_arsenal.csv", index=False, sep=";", decimal=",", encoding="utf-8-sig")
 
 print("Generadas 3 tablas en data/processed/:")
 print("  - plantilla_arsenal.csv     (", len(pl), "jugadores )")
