@@ -1,12 +1,20 @@
 # Análisis de datos — Arsenal FC | Jornada 26 (Brentford 1-1 Arsenal)
 
-Proyecto de análisis de un partido de la Premier League 2025/2026 a partir de
-datos de eventos en formato Opta (JSON), con un proceso **ETL en Python** y
-visualización final en **Power BI**.
+Informe de análisis de datos sobre el Arsenal FC en la Premier League 2025/2026,
+a partir de datos de eventos en formato Opta (JSON). Incluye un proceso **ETL en
+Python** y un informe visual en **Power BI** que analiza tanto al equipo como un
+partido concreto.
 
 ## Objetivo
 
-Analizar el partido **Brentford vs Arsenal (Jornada 26, 1-1)** mediante tres bloques:
+El informe se estructura en dos planos:
+
+**A) Análisis del equipo (Arsenal)**
+- Análisis individual de la plantilla (estadísticas características por jugador).
+- Modelo de juego basado en indicadores de estilo.
+- Representación del sistema (formación 4-2-3-1).
+
+**B) Análisis del partido — Brentford vs Arsenal (J26, 1-1)**
 
 | Bloque | Partido | Resultado |
 |---|---|---|
@@ -18,33 +26,44 @@ Analizar el partido **Brentford vs Arsenal (Jornada 26, 1-1)** mediante tres blo
 
 ```
 proyecto_arsenal/
-├── ETL_Arsenal_J26.ipynb     # Cuaderno con la ETL paso a paso
+├── ETL_Arsenal_J26.ipynb        # Cuaderno con la ETL paso a paso (partidos)
 ├── scripts/
-│   └── etl_partidos.py       # Script de la ETL (versión automatizable)
+│   ├── etl_partidos.py          # ETL de métricas de equipo (3 partidos)
+│   └── etl_equipo.py            # ETL del equipo: plantilla, modelo y formación
 ├── data/
-│   ├── raw/                  # JSON originales (entrada)
-│   └── processed/            # CSV generado (salida para Power BI)
-├── requirements.txt          # Librerías necesarias
+│   ├── seasonstats_arsenal.csv  # Stats de temporada por jugador (entrada)
+│   ├── raw/                     # JSON originales de los 3 partidos (entrada)
+│   └── processed/               # Salidas para Power BI (CSV + imagen del campo)
+├── requirements.txt
 └── README.md
 ```
 
+## Tablas generadas (salida para Power BI)
+
+- `metricas_equipo.csv` — métricas por equipo de los 3 partidos.
+- `plantilla_arsenal.csv` — análisis individual de jugadores.
+- `modelo_juego_arsenal.csv` — indicadores del estilo de juego.
+- `once_inicial_arsenal.csv` — once titular con coordenadas (4-2-3-1).
+- `campo_futbol.png` — imagen de campo para el diagrama de formación.
+
 ## Proceso ETL
 
-1. **Extract**: lectura de los 3 partidos en formato Opta/Stats Perform (JSON).
-2. **Transform**: cálculo de métricas por equipo (posesión, tiros, tiros a puerta,
-   pases y precisión, regates, duelos aéreos, entradas, intercepciones, despejes,
-   faltas, córners y tarjetas). Corrige el doble registro de faltas/córners de Opta.
-3. **Load**: exportación a `data/processed/metricas_equipo.csv` para Power BI.
+1. **Extract**: lectura de los partidos (Opta JSON) y del CSV de temporada.
+2. **Transform**: cálculo de métricas de equipo, perfiles de jugador, indicadores
+   de estilo y extracción de la formación. Corrige el doble registro de
+   faltas/córners de Opta.
+3. **Load**: exportación a CSV (y PNG) en `data/processed/` para Power BI.
 
 ## Cómo ejecutar
 
 ```bash
 pip install -r requirements.txt
 python scripts/etl_partidos.py
+python scripts/etl_equipo.py
 ```
 
 O abrir `ETL_Arsenal_J26.ipynb` en Jupyter y ejecutar las celdas en orden.
 
 ## Herramientas
 
-Python · pandas · Jupyter · Power BI · Git/GitHub
+Python · pandas · matplotlib · Jupyter · Power BI · Git/GitHub

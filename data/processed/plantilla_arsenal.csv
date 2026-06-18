@@ -1,0 +1,25 @@
+﻿jugador,posicion,dorsal,partidos,minutos,goles,asistencias,tiros,tiros_puerta,pases_clave,pases,regates,entradas,intercepciones,recuperaciones,grandes_ocasiones_creadas,toques_area_rival,conducciones_progresivas,GA_por_90,perfil
+David Raya,Goalkeeper,1,36.0,3240,0.0,0.0,0.0,0.0,3.0,1075.0,1.0,1.0,1.0,300.0,0.0,0.0,56.0,0.0,Rotación de la plantilla.
+D. Rice,Midfielder,41,35.0,3009,4.0,5.0,27.0,13.0,58.0,2053.0,14.0,65.0,36.0,173.0,17.0,54.0,313.0,0.27,"Mediocentro todoterreno. El motor del equipo: enorme volumen de recuperaciones, conducciones progresivas y llegada."
+Martín Zubimendi,Midfielder,36,36.0,2910,5.0,1.0,19.0,9.0,17.0,1859.0,7.0,67.0,39.0,113.0,1.0,51.0,203.0,0.19,"Pivote posicional. Ancla defensiva del medio: líder en entradas e intercepciones, da equilibrio."
+Gabriel Magalhães,Defender,6,30.0,2616,3.0,4.0,16.0,7.0,3.0,1651.0,1.0,37.0,23.0,62.0,5.0,45.0,179.0,0.24,"Central dominador. Referencia aérea y defensiva, también muy fiable con balón."
+W. Saliba,Defender,2,30.0,2525,1.0,0.0,4.0,1.0,10.0,2041.0,7.0,35.0,17.0,111.0,1.0,22.0,221.0,0.04,Central de salida. Inmenso volumen de pase y solidez defensiva; inicia el juego desde atrás.
+J. Timber,Defender,12,30.0,2457,3.0,5.0,22.0,7.0,22.0,1085.0,13.0,66.0,24.0,97.0,4.0,91.0,150.0,0.29,Lateral moderno. Aporta en ataque (asistencias) y es muy activo defensivamente.
+V. Gyökeres,Forward,14,34.0,2206,14.0,1.0,40.0,22.0,18.0,313.0,6.0,6.0,1.0,52.0,3.0,138.0,58.0,0.61,Delantero referencia y máximo goleador. Vive en el área: lidera el equipo en remates y toques en zona de finalización.
+B. Saka,Forward,7,30.0,2135,7.0,4.0,45.0,27.0,56.0,741.0,50.0,36.0,15.0,111.0,11.0,176.0,202.0,0.46,"Extremo desequilibrante. Combina gol, asistencia y regate; uno de los grandes generadores de ocasiones del equipo."
+L. Trossard,Forward,19,30.0,1917,6.0,6.0,33.0,15.0,29.0,726.0,23.0,27.0,9.0,76.0,8.0,112.0,137.0,0.56,Atacante polivalente. Eficiente de cara a gol y asistencia desde varias posiciones.
+E. Eze,Midfielder,10,31.0,1812,7.0,2.0,35.0,17.0,13.0,623.0,28.0,18.0,10.0,74.0,4.0,61.0,92.0,0.45,"Mediapunta creativo. Desequilibrio, regate y llegada al área."
+P. Hincapié,Defender,5,23.0,1684,1.0,2.0,1.0,1.0,11.0,780.0,7.0,47.0,24.0,59.0,2.0,24.0,103.0,0.16,Defensa versátil. Fiable en el uno contra uno y en la recuperación.
+R. Calafiori,Defender,33,24.0,1590,1.0,2.0,22.0,8.0,4.0,698.0,15.0,32.0,15.0,70.0,0.0,51.0,93.0,0.17,Rotación de la plantilla.
+M. Ødegaard,Midfielder,8,23.0,1281,1.0,6.0,17.0,8.0,32.0,754.0,9.0,19.0,7.0,67.0,6.0,36.0,131.0,0.49,Cerebro creativo. Capitán y principal asistente; organiza el juego entre líneas con pases clave.
+N. Madueke,Forward,20,25.0,1134,2.0,1.0,14.0,8.0,18.0,375.0,26.0,21.0,5.0,32.0,5.0,102.0,112.0,0.24,Extremo vertical. Gran regateador y con muchos toques en el área rival.
+Mikel Merino,Midfielder,23,21.0,999,4.0,3.0,15.0,8.0,9.0,355.0,5.0,26.0,10.0,55.0,4.0,33.0,27.0,0.63,Rotación de la plantilla.
+Gabriel Martinelli,Forward,11,28.0,982,1.0,3.0,21.0,12.0,8.0,231.0,18.0,12.0,1.0,47.0,3.0,62.0,69.0,0.37,Rotación de la plantilla.
+Cristhian Mosquera,Defender,3,18.0,809,0.0,0.0,1.0,0.0,4.0,501.0,0.0,27.0,8.0,30.0,0.0,7.0,77.0,0.0,Rotación de la plantilla.
+B. White,Defender,4,12.0,704,0.0,1.0,4.0,1.0,7.0,354.0,3.0,15.0,9.0,28.0,3.0,16.0,31.0,0.13,Rotación de la plantilla.
+M. Lewis-Skelly,Defender,49,18.0,591,0.0,0.0,1.0,0.0,4.0,321.0,8.0,8.0,4.0,24.0,0.0,13.0,44.0,0.0,Rotación de la plantilla.
+K. Havertz,Forward,29,10.0,465,1.0,2.0,9.0,3.0,3.0,120.0,3.0,7.0,0.0,12.0,0.0,26.0,19.0,0.58,Rotación de la plantilla.
+Gabriel Jesus,Forward,9,13.0,346,2.0,0.0,12.0,10.0,2.0,93.0,7.0,4.0,3.0,18.0,0.0,34.0,21.0,0.52,Rotación de la plantilla.
+E. Nwaneri,Midfielder,22,6.0,165,0.0,0.0,4.0,0.0,1.0,87.0,3.0,1.0,0.0,10.0,0.0,6.0,20.0,0.0,Rotación de la plantilla.
+M. Dowman,Midfielder,56,5.0,91,1.0,0.0,5.0,1.0,3.0,28.0,5.0,2.0,1.0,8.0,0.0,17.0,19.0,0.99,Rotación de la plantilla.
+C. Nørgaard,Midfielder,16,6.0,56,0.0,0.0,1.0,1.0,0.0,23.0,0.0,0.0,0.0,4.0,0.0,0.0,2.0,0.0,Rotación de la plantilla.
