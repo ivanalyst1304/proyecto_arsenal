@@ -6,7 +6,6 @@ Genera tres tablas para el informe de Power BI:
   2) modelo_juego_arsenal.csv   -> indicadores del estilo de juego
   3) once_inicial_arsenal.csv   -> once titular con coordenadas (4-2-3-1)
 """
-import json
 from pathlib import Path
 import pandas as pd
 
@@ -27,7 +26,6 @@ def enteros(df):
 
 
 CSV_PLANTILLA = BASE / "data" / "seasonstats_arsenal.csv"   # CSV original de la temporada
-POST = RAW / "postpartido_J26_Brentford_Arsenal.json"
 
 # =====================================================================
 # 1) PLANTILLA — análisis individual
@@ -101,29 +99,43 @@ enteros(modelo).to_csv(OUT / "modelo_juego_arsenal.csv", index=False, sep=";", d
 # =====================================================================
 # 3) ONCE INICIAL — formación 4-2-3-1 con coordenadas para Power BI
 # =====================================================================
-d = json.load(open(POST, encoding="utf-8"))
-ev = d["liveData"]["event"]
-ARS = [c["id"] for c in d["matchInfo"]["contestant"] if c["name"] == "Arsenal"][0]
-id2name = dict(zip(df["id"].astype(str).str.strip(), df["nombre"]))
-setup = [e for e in ev if e["typeId"] == 34 and e["contestantId"] == ARS][0]
-q = {x["qualifierId"]: x.get("value") for x in setup["qualifier"]}
-ids = [s.strip() for s in q[30].split(",")]
-nums = [s.strip() for s in q[59].split(",")]
-pos = [s.strip() for s in q[44].split(",")]
-titulares = [(id2name.get(i, i), n) for i, n, p in zip(ids, nums, pos) if p != "5"]
+# =====================================================================
+# 3) ONCE TIPO — jugadores más utilizados (por minutos) en sistema 4-2-3-1
+# =====================================================================
+# El CSV solo trae posición general (Goalkeeper/Defender/Midfielder/Forward),
+# así que: (a) seleccionamos los más usados por minutos en cada línea y
+# (b) los colocamos en los huecos del 4-2-3-1 según su rol real conocido.
+df["min"] = pd.to_numeric(df["Time Played"], errors="coerce").fillna(0)
+activos = df[df["min"] > 0]
 
-# Coordenadas del 4-2-3-1 (x=ancho 0-100, y=profundidad 0-100)
-coords = {
-    "1": (50, 6, "Portero"), "12": (85, 24, "Lateral derecho"),
-    "3": (62, 22, "Central"), "6": (38, 22, "Central"), "5": (15, 24, "Lateral izquierdo"),
-    "36": (38, 44, "Pivote"), "41": (62, 44, "Pivote"),
-    "20": (85, 68, "Interior derecho"), "10": (50, 66, "Mediapunta"), "19": (15, 68, "Interior izquierdo"),
-    "14": (50, 88, "Delantero"),
+def top_min(rol, n):
+    return activos[activos["posicion"] == rol].nlargest(n, "min")["nombre"].tolist()
+
+gk = top_min("Goalkeeper", 1)
+defensas = top_min("Defender", 4)
+medios = top_min("Midfielder", 3)
+delanteros = top_min("Forward", 3)
+
+# Colocación en el 4-2-3-1 (x=ancho 0-100, y=profundidad 0-100).
+# Asignación por rol real conocido de cada jugador seleccionado.
+slots = {
+    gk[0]:        (50, 6,  "Portero"),
+    defensas[3]:  (15, 24, "Lateral izquierdo"),   # Hincapié
+    defensas[0]:  (38, 22, "Central"),             # Gabriel
+    defensas[1]:  (62, 22, "Central"),             # Saliba
+    defensas[2]:  (85, 24, "Lateral derecho"),     # Timber
+    medios[1]:    (38, 44, "Pivote"),              # Zubimendi
+    medios[0]:    (62, 44, "Pivote"),              # Rice
+    delanteros[2]:(15, 68, "Extremo izquierdo"),   # Trossard
+    medios[2]:    (50, 66, "Mediapunta"),          # Eze
+    delanteros[1]:(85, 68, "Extremo derecho"),     # Saka
+    delanteros[0]:(50, 88, "Delantero"),           # Gyökeres
 }
+dorsal_map = dict(zip(df["nombre"], df["dorsal"]))
 filas = []
-for nombre, dorsal in titulares:
-    x, y, rol = coords.get(dorsal, (50, 50, "?"))
-    filas.append({"dorsal": int(dorsal), "jugador": nombre, "rol": rol, "x": x, "y": y})
+for nombre, (x, y, rol) in slots.items():
+    filas.append({"dorsal": dorsal_map.get(nombre, 0), "jugador": nombre,
+                  "rol": rol, "x": x, "y": y, "minutos": int(activos[activos["nombre"] == nombre]["min"].iloc[0])})
 once = pd.DataFrame(filas).sort_values("y")
 enteros(once).to_csv(OUT / "once_inicial_arsenal.csv", index=False, sep=";", decimal=",", encoding="utf-8-sig")
 
