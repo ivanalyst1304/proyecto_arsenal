@@ -83,7 +83,10 @@ enteros(pl).to_csv(OUT / "plantilla_arsenal.csv", index=False, sep=";", decimal=
 # =====================================================================
 tot = lambda c: pd.to_numeric(df[c], errors="coerce").fillna(0).sum()
 total_pases = tot("Total Passes")
+ok = tot("Total Successful Passes ( Excl Crosses & Corners ) ")
+ko = tot("Total Unsuccessful Passes ( Excl Crosses & Corners )")
 estilo = [
+    ("Precisión de pase (%)", round(100 * ok / (ok + ko), 1), "Fiabilidad en la circulación del balón."),
     ("Pases totales (temporada)", int(total_pases), "Volumen de juego asociativo del equipo."),
     ("% pases hacia adelante", round(100*tot("Forward Passes")/total_pases, 1), "Verticalidad: cuánto progresa el balón."),
     ("% pases en campo rival", round(100*tot("Successful Passes Opposition Half")/total_pases, 1), "Dominio de territorio."),
