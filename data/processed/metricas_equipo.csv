@@ -1,7 +1,7 @@
-﻿bloque,jornada,fecha,partido,equipo,lado,goles_marcador,posesion_pct,tiros_totales,tiros_a_puerta,pases,pases_completados,precision_pase_pct,regates,regates_exitosos,duelos_aereos,duelos_aereos_ganados,entradas,intercepciones,despejes,faltas_cometidas,corners,amarillas,rojas
-postpartido,26,2026-02-12,Brentford vs Arsenal,Brentford,local,1,41.5,12,8,354,259,73.2,20,6,28,7,29,12,11,12,6,4,0
-postpartido,26,2026-02-12,Brentford vs Arsenal,Arsenal,visitante,1,58.5,7,5,500,415,83.0,12,3,28,21,37,4,22,11,4,2,0
-prepartido_arsenal,25,2026-02-07,Arsenal vs Sunderland,Arsenal,local,3,49.1,16,10,427,343,80.3,13,6,33,17,23,12,15,11,5,1,0
-prepartido_arsenal,25,2026-02-07,Arsenal vs Sunderland,Sunderland,visitante,0,50.9,5,4,442,350,79.2,14,5,33,16,32,6,13,8,2,2,0
-prepartido_rival,25,2026-02-07,Newcastle United vs Brentford,Newcastle United,local,2,53.2,16,8,471,375,79.6,16,10,38,22,33,4,9,14,9,2,0
-prepartido_rival,25,2026-02-07,Newcastle United vs Brentford,Brentford,visitante,3,46.8,11,9,415,302,72.8,12,6,38,16,21,3,15,18,3,2,0
+﻿bloque;jornada;fecha;partido;equipo;lado;goles_marcador;posesion_pct;tiros_totales;tiros_a_puerta;pases;pases_completados;precision_pase_pct;regates;regates_exitosos;duelos_aereos;duelos_aereos_ganados;entradas;intercepciones;despejes;faltas_cometidas;corners;amarillas;rojas;toques_area_rival;pases_campo_rival;pases_progresivos;recuperaciones;faltas_recibidas;ppda
+postpartido;26;2026-02-12;Brentford vs Arsenal;Brentford;local;1;41,5;12;8;354;259;73,2;20;6;28;7;29;12;11;12;6;4;0;45;126;23;39;11;14.6
+postpartido;26;2026-02-12;Brentford vs Arsenal;Arsenal;visitante;1;58,5;7;5;500;415;83,0;12;3;28;21;37;4;22;11;4;2;0;41;281;37;32;12;16.1
+prepartido_arsenal;25;2026-02-07;Arsenal vs Sunderland;Arsenal;local;3;49,1;16;10;427;343;80,3;13;6;33;17;23;12;15;11;5;1;0;49;231;32;42;8;23.4
+prepartido_arsenal;25;2026-02-07;Arsenal vs Sunderland;Sunderland;visitante;0;50,9;5;4;442;350;79,2;14;5;33;16;32;6;13;8;2;2;0;21;182;27;36;11;16.5
+prepartido_rival;25;2026-02-07;Newcastle United vs Brentford;Newcastle United;local;2;53,2;16;8;471;375;79,6;16;10;38;22;33;4;9;14;9;2;0;42;226;40;47;18;16.8
+prepartido_rival;25;2026-02-07;Newcastle United vs Brentford;Brentford;visitante;3;46,8;11;9;415;302;72,8;12;6;38;16;21;3;15;18;3;2;0;36;180;39;48;14;13.3
