@@ -53,7 +53,8 @@ def stats_jugadores(fichero, equipo, salida):
                     break
 
     cols = ["goles", "asistencias", "tiros", "tiros_a_puerta", "pases_completados",
-            "pases_clave", "regates", "toques_area_rival", "entradas", "intercepciones", "despejes"]
+            "regates", "entradas", "intercepciones", "despejes",
+            "pases_clave", "toques_area_rival"]
     filas = [{"jugador": j, **{c: st[j][c] for c in cols}} for j in st]
     df = pd.DataFrame(filas).fillna(0)
     df = df.sort_values(["goles", "asistencias", "tiros"], ascending=False).reset_index(drop=True)
