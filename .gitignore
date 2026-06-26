@@ -1,12 +1,21 @@
 # Python
 __pycache__/
-*.pyc
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+env/
+
+# Jupyter
 .ipynb_checkpoints/
 
-# Entornos
-.venv/
-env/
+# Power BI (archivo binario pesado, se entrega aparte)
+*.pbix
 
 # Sistema
 .DS_Store
 Thumbs.db
+
+# Datos pesados opcionales (descomenta si no quieres subir los JSON originales)
+# data/raw/
+# data/source/
