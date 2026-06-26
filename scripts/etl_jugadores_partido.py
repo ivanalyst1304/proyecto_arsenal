@@ -38,6 +38,9 @@ def stats_jugadores(fichero, equipo, salida):
         if t == 12: st[j]["entradas"] += 1
         if t == 8: st[j]["intercepciones"] += 1
         if t == 7: st[j]["despejes"] += 1
+        if e.get("x", 0) > 83 and 21 < e.get("y", 50) < 79: st[j]["toques_area_rival"] += 1
+        if t == 1 and any(x["qualifierId"] == 210 for x in e.get("qualifier", [])):
+            st[j]["pases_clave"] += 1
 
     # Asistencias: pase completado de un compañero justo antes de cada gol
     for i, e in enumerate(evs):
@@ -50,7 +53,7 @@ def stats_jugadores(fichero, equipo, salida):
                     break
 
     cols = ["goles", "asistencias", "tiros", "tiros_a_puerta", "pases_completados",
-            "regates", "entradas", "intercepciones", "despejes"]
+            "pases_clave", "regates", "toques_area_rival", "entradas", "intercepciones", "despejes"]
     filas = [{"jugador": j, **{c: st[j][c] for c in cols}} for j in st]
     df = pd.DataFrame(filas).fillna(0)
     df = df.sort_values(["goles", "asistencias", "tiros"], ascending=False).reset_index(drop=True)
