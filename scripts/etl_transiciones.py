@@ -67,11 +67,33 @@ def transiciones_equipo(ev, TID):
                             pass
                     break
 
+    # FALTAS: altura media y % cometidas tras pérdida (falta táctica para cortar transición)
+    faltas = [(i, e) for i, e in enumerate(evs)
+              if e.get("contestantId") == TID and e["typeId"] == 4
+              and e.get("outcome") == 0 and e.get("x") is not None]
+    altura_faltas = round(mean(e["x"] for i, e in faltas), 1) if faltas else None
+    tras_perdida = 0
+    for i, e in faltas:
+        t0 = e.get("timeMin", 0) * 60 + e.get("timeSec", 0)
+        for j in range(i - 1, max(i - 8, -1), -1):
+            p = evs[j]
+            tp = p.get("timeMin", 0) * 60 + p.get("timeSec", 0)
+            if t0 - tp > 15:
+                break
+            # pérdida = pase fallado propio, o el rival recupera (despeje/interc/entrada/recuperación)
+            if (p.get("contestantId") == TID and p["typeId"] == 1 and p.get("outcome") == 0) or \
+               (p.get("contestantId") != TID and p["typeId"] in (7, 8, 12, 49)):
+                tras_perdida += 1
+                break
+    faltas_tras_perdida_pct = round(100 * tras_perdida / len(faltas), 1) if faltas else None
+
     return {
         "tiempo_transicion_seg": round(mean(t["dur"] for t in trans), 1) if trans else None,
         "transiciones_rapidas": sum(1 for t in trans if t["dur"] < 6),
         "altura_recuperacion": round(mean(t["x0"] for t in trans), 1) if trans else None,
         "pase_adelante_pct": round(100 * adel / tot, 1) if tot else None,
+        "altura_faltas": altura_faltas,
+        "faltas_tras_perdida_pct": faltas_tras_perdida_pct,
     }
 
 
