@@ -74,6 +74,8 @@ def main():
         vals = metricas_extra(fichero, fila["equipo"])
         for col in nuevas:
             df.at[i, col] = vals[col]
+    # Asegurar que ppda es numérica (float) para que se exporte con coma decimal, no con punto
+    df["ppda"] = pd.to_numeric(df["ppda"], errors="coerce")
     df.to_csv(CSV, index=False, sep=";", decimal=",", encoding="utf-8-sig")
     print("metricas_equipo.csv actualizado con:", ", ".join(nuevas))
     print(df[["bloque", "equipo"] + nuevas].to_string(index=False))
